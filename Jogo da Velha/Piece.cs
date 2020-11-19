@@ -30,8 +30,22 @@ namespace JogoDaVelha
             }
             else
             {
-                return " ";
+                return "P";
             }
+        }
+        public override int GetHashCode()
+        {
+            return CrossOrCircle.GetHashCode() + Grid.GetHashCode();
+        }
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Piece))
+            {
+                return false;
+            }
+            Piece other = obj as Piece;
+
+            return CrossOrCircle.Equals(other.CrossOrCircle) && Grid.Equals(other.Grid);
         }
 
 

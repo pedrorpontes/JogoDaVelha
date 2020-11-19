@@ -4,6 +4,6 @@
     {
         X = 0,
         O = 1,
-        P = 2
+        Placeholder = 2
     }
 }

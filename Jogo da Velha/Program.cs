@@ -9,32 +9,58 @@ namespace JogoDaVelha
     {
         static void Main(string[] args)
         {
-            
+            bool playAgain = true;
             Match match = new Match();
-            Tela.printMatch(match);
+            Screen.printMatch(match);
 
-            while (!match.Ended)
+            while (playAgain)
             {
+                while (!match.Ended)
+                {
+                    try
+                    {
+                        Console.Clear();
+                        Screen.printMatch(match);
+                        match.Grid.showPieces();
+                        Console.Write("Where do you want to insert your piece[0-8]? ");
+                        match.insertPiece(int.Parse(Console.ReadLine()));
+
+                    }
+                    catch (CustomException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine((e.Message));
+                        Console.ReadLine();
+                    }
+
+                }
+                Console.ReadLine();
+                Console.Clear();
+
                 try
                 {
-                    Console.Clear();
-                    Tela.printMatch(match);
-                    Console.Write("Where do you want to insert your piece[1-9]? ");
-                    match.insertPiece(int.Parse(Console.ReadLine()));
-                    match.didGameEnd();
+                    Console.WriteLine("DO YOU WANT TO PLAY AGAIN[Y/N]?");
+                    string again = Console.ReadLine().Substring(0,1).ToUpper();
+                    if (again == "Y")
+                    {
+                        
+                        match = new Match();
+                    }
+                    else
+                    {
+                        playAgain = false;
+                    }
                 }
-                catch (CustomException e)
+                catch(Exception e)
                 {
                     Console.WriteLine(e.Message);
-                    Console.ReadLine();
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine((e.Message));
-                    Console.ReadLine();
-                }
-               
-                
+
+
             }
            
 

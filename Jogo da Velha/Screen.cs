@@ -3,7 +3,7 @@ using System;
 
 namespace JogoDaVelha
 {
-    class Tela
+    class Screen
     {
         public static void DrawGrid(Grid grid)
         {

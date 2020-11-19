@@ -35,22 +35,22 @@ namespace JogoDaVelha
         }
         public void insertPiece(int position)
         {
-            if (Grid.pieces[position - 1].CrossOrCircle == CrossOrCircle.P)
+            if (Grid.pieces[position].CrossOrCircle == CrossOrCircle.Placeholder)
             {
 
                 Piece p = new Piece(playerTurn, Grid);
                 if (p.CrossOrCircle == CrossOrCircle.X)
                 {
 
-                    Grid.pieces.RemoveAt(position - 1);
-                    Grid.pieces.Insert(position - 1, p);
+                    Grid.pieces.RemoveAt(position);
+                    Grid.pieces.Insert(position, p);
                     didGameEnd();
                     ChangeTurn();
                 }
                 else
                 {
-                    Grid.pieces.RemoveAt(position - 1);
-                    Grid.pieces.Insert(position - 1, p);
+                    Grid.pieces.RemoveAt(position);
+                    Grid.pieces.Insert(position, p);
                     didGameEnd();
                     ChangeTurn();
                 }
@@ -61,62 +61,71 @@ namespace JogoDaVelha
             }
         }
 
+        public int getCode(int position)
+        {
+            return Grid.pieces[position].GetHashCode();
+        }
 
 
         public void didGameEnd()
         {
+
             //Winning Condition Horizontal
-            if ((Grid.pieces[1] == Grid.pieces[2] && Grid.pieces[1] == Grid.pieces[3] && Grid.pieces[1].CrossOrCircle != CrossOrCircle.P)) 
+            if ((Grid.pieces[0].GetHashCode() == Grid.pieces[1].GetHashCode() && Grid.pieces[0].GetHashCode() == Grid.pieces[2].GetHashCode() && Grid.pieces[0].CrossOrCircle != CrossOrCircle.Placeholder))
             {
                 Ended = true;
                 Console.WriteLine(playerTurn + " WON");
             }
-            else if ((Grid.pieces[4] == Grid.pieces[5] && Grid.pieces[4] == Grid.pieces[6] && Grid.pieces[4].CrossOrCircle != CrossOrCircle.P)) 
+            else if ((Grid.pieces[3].GetHashCode() == Grid.pieces[4].GetHashCode() && Grid.pieces[3].GetHashCode() == Grid.pieces[5].GetHashCode() && Grid.pieces[3].CrossOrCircle != CrossOrCircle.Placeholder))
             {
                 Ended = true;
                 Console.WriteLine(playerTurn + " WON");
             }
-            else if ((Grid.pieces[7] == Grid.pieces[8] && Grid.pieces[7] == Grid.pieces[9] && Grid.pieces[7].CrossOrCircle != CrossOrCircle.P)) 
+            else if (Grid.pieces[6].GetHashCode() == Grid.pieces[7].GetHashCode() && Grid.pieces[6].GetHashCode() == Grid.pieces[8].GetHashCode() && Grid.pieces[6].CrossOrCircle != CrossOrCircle.Placeholder)
             {
                 Ended = true;
                 Console.WriteLine(playerTurn + " WON");
             }
             //Winning Condition Vertical
-            else if ((Grid.pieces[1] == Grid.pieces[4] && Grid.pieces[1] == Grid.pieces[7] && Grid.pieces[1].CrossOrCircle != CrossOrCircle.P)) 
+            else if ((Grid.pieces[0].GetHashCode() == Grid.pieces[3].GetHashCode() && Grid.pieces[0].GetHashCode() == Grid.pieces[6].GetHashCode() && Grid.pieces[0].CrossOrCircle != CrossOrCircle.Placeholder))
             {
                 Ended = true;
                 Console.WriteLine(playerTurn + " WON");
             }
-            else if ((Grid.pieces[2] == Grid.pieces[5] && Grid.pieces[2] == Grid.pieces[8] && Grid.pieces[2].CrossOrCircle != CrossOrCircle.P)) 
+            else if ((Grid.pieces[1].GetHashCode() == Grid.pieces[4].GetHashCode() && Grid.pieces[1].GetHashCode() == Grid.pieces[7].GetHashCode() && Grid.pieces[1].CrossOrCircle != CrossOrCircle.Placeholder))
             {
                 Ended = true;
                 Console.WriteLine(playerTurn + " WON");
             }
-            else if ((Grid.pieces[3] == Grid.pieces[6] && Grid.pieces[3] == Grid.pieces[9] && Grid.pieces[3].CrossOrCircle != CrossOrCircle.P)) 
+            else if ((Grid.pieces[2].GetHashCode() == Grid.pieces[5].GetHashCode() && Grid.pieces[2].GetHashCode() == Grid.pieces[8].GetHashCode() && Grid.pieces[2].CrossOrCircle != CrossOrCircle.Placeholder))
             {
                 Ended = true;
                 Console.WriteLine(playerTurn + " WON");
             }
             //Winning Condition Diagonal
-            else if ((Grid.pieces[1] == Grid.pieces[5] && Grid.pieces[1] == Grid.pieces[9] && Grid.pieces[1].CrossOrCircle != CrossOrCircle.P)) 
+            else if ((Grid.pieces[0].GetHashCode() == Grid.pieces[4].GetHashCode() && Grid.pieces[0].GetHashCode() == Grid.pieces[8].GetHashCode() && Grid.pieces[0].CrossOrCircle != CrossOrCircle.Placeholder))
             {
                 Ended = true;
                 Console.WriteLine(playerTurn + " WON");
             }
-            else if ((Grid.pieces[3] == Grid.pieces[5] && Grid.pieces[3] == Grid.pieces[7] && Grid.pieces[3].CrossOrCircle != CrossOrCircle.P)) 
+            else if ((Grid.pieces[2].GetHashCode() == Grid.pieces[4].GetHashCode() && Grid.pieces[2].GetHashCode() == Grid.pieces[6].GetHashCode() && Grid.pieces[2].CrossOrCircle != CrossOrCircle.Placeholder))
             {
                 Ended = true;
                 Console.WriteLine(playerTurn + " WON");
             }
 
-            else if (Turn > 9)
+            else if (Turn == 9)
             {
-                Console.WriteLine("DRAW");
+                Console.Clear();
+                Screen.DrawGrid(Grid);
+                Console.WriteLine("The game ended in a Draw!");
                 Console.ReadLine();
                 Ended = true;
-                
+
             }
+            
         }
+
     }
 }
 

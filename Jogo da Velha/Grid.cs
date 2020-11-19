@@ -13,16 +13,16 @@ namespace JogoDaVelha
             pieces = new List<Piece>();
             for(int i = 0; i < 9; i++)
             {
-                pieces.Add(new Piece(CrossOrCircle.P, this));
+                pieces.Add(new Piece(CrossOrCircle.Placeholder, this));
             }
 
         }
 
         public string piece(int position)
         {
-            if (pieces[position].CrossOrCircle == CrossOrCircle.P)
+            if (pieces[position].CrossOrCircle == CrossOrCircle.Placeholder)
             {
-                return (position + 1).ToString();
+                return (position).ToString();
             }
             else
             {
@@ -30,27 +30,25 @@ namespace JogoDaVelha
             }
                
         }
-
-        public bool existingPiece(int position)
+        public void showPieces()
         {
-            if (pieces[position] == null)
+            Console.Write("[");
+            foreach(Piece p in pieces)
             {
-                return pieces[position] == null;
+                if (pieces[8] == p)
+                {
+                    Console.Write(p);
+                }
+                else
+                {
+                    Console.Write(p+";");
+                }
             }
-            else
-            {
-                return pieces[position] != null;
-            }
+            Console.WriteLine("]");
         }
-        public void fillList()
-        {
-            Piece P = new Piece(CrossOrCircle.P, this);
-            for (int i = 0; i < 9; i++)
-            {
-                pieces.Add(P);
-            }
 
-        }
+        
+        
     }
 
 
