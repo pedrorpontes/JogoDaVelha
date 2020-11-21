@@ -1,8 +1,4 @@
 ﻿using JogoDaVelha.Enum;
-using JogoDaVelha;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace JogoDaVelha
 {

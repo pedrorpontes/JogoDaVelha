@@ -1,17 +1,17 @@
-﻿using System;
+﻿using JogoDaVelha.Enum;
+using System;
 using System.Collections.Generic;
-using JogoDaVelha.Enum;
 namespace JogoDaVelha
 {
     class Grid
     {
-        
+
         public List<Piece> pieces;
 
         public Grid()
         {
             pieces = new List<Piece>();
-            for(int i = 0; i < 9; i++)
+            for (int i = 0; i < 9; i++)
             {
                 pieces.Add(new Piece(CrossOrCircle.Placeholder, this));
             }
@@ -26,14 +26,24 @@ namespace JogoDaVelha
             }
             else
             {
-                return pieces[position].ToString();
+                if(pieces[position].CrossOrCircle == CrossOrCircle.X){
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    return pieces[position].ToString();
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    string piece = pieces[position].ToString();
+                    
+                    return pieces[position].ToString();
+                }
             }
-               
+
         }
         public void showPieces()
         {
             Console.Write("[");
-            foreach(Piece p in pieces)
+            foreach (Piece p in pieces)
             {
                 if (pieces[8] == p)
                 {
@@ -41,14 +51,14 @@ namespace JogoDaVelha
                 }
                 else
                 {
-                    Console.Write(p+";");
+                    Console.Write(p + ";");
                 }
             }
             Console.WriteLine("]");
         }
 
-        
-        
+
+
     }
 
 

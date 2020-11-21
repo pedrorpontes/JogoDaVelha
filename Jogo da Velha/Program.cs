@@ -1,5 +1,4 @@
 ﻿using System;
-using JogoDaVelha.Enum;
 
 
 
@@ -21,8 +20,8 @@ namespace JogoDaVelha
                     {
                         Console.Clear();
                         Screen.printMatch(match);
-                        
-                        Console.Write(Screen.CenterText(("Where do you want to insert your piece[0-8]? ")));
+
+                        Console.Write((("Where do you want to insert your piece[0-8]? ")));
                         Console.ForegroundColor = ConsoleColor.Green;
                         match.insertPiece(int.Parse(Console.ReadLine()));
                         Console.ForegroundColor = ConsoleColor.White;
@@ -31,21 +30,21 @@ namespace JogoDaVelha
                     catch (CustomException e)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine(Screen.CenterText((e.Message)));
+                        Console.WriteLine(((e.Message)));
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.ReadLine();
                     }
                     catch (ArgumentOutOfRangeException e)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine(Screen.CenterText("The position you choose was not between 0 and 8"));
+                        Console.WriteLine(("The position you choose was not between 0 and 8"));
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.ReadLine();
                     }
                     catch (Exception e)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine(Screen.CenterText(((e.Message))));
+                        Console.WriteLine((((e.Message))));
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.ReadLine();
                     }
@@ -56,11 +55,11 @@ namespace JogoDaVelha
 
                 try
                 {
-                    Console.WriteLine(Screen.CenterText(("DO YOU WANT TO PLAY AGAIN[Y/N]?")));
-                    string again = Console.ReadLine().Substring(0,1).ToUpper();
+                    Console.WriteLine((("DO YOU WANT TO PLAY AGAIN[Y/N]?")));
+                    string again = Console.ReadLine().Substring(0, 1).ToUpper();
                     if (again == "Y")
                     {
-                        
+
                         match = new Match();
                     }
                     else
@@ -68,14 +67,14 @@ namespace JogoDaVelha
                         playAgain = false;
                     }
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
-                    Console.WriteLine(Screen.CenterText((e.Message)));
+                    Console.WriteLine(((e.Message)));
                 }
 
 
             }
-           
+
 
 
 

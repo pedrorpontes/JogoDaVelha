@@ -1,7 +1,5 @@
 ﻿using JogoDaVelha.Enum;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 
 namespace JogoDaVelha
@@ -73,7 +71,7 @@ namespace JogoDaVelha
             //Winning Condition Horizontal
             if (
                 (Grid.pieces[0].GetHashCode() == Grid.pieces[1].GetHashCode() && Grid.pieces[0].GetHashCode() == Grid.pieces[2].GetHashCode() && Grid.pieces[0].CrossOrCircle != CrossOrCircle.Placeholder) ||
-                (Grid.pieces[3].GetHashCode() == Grid.pieces[4].GetHashCode() && Grid.pieces[3].GetHashCode() == Grid.pieces[5].GetHashCode() && Grid.pieces[3].CrossOrCircle != CrossOrCircle.Placeholder) || 
+                (Grid.pieces[3].GetHashCode() == Grid.pieces[4].GetHashCode() && Grid.pieces[3].GetHashCode() == Grid.pieces[5].GetHashCode() && Grid.pieces[3].CrossOrCircle != CrossOrCircle.Placeholder) ||
                 (Grid.pieces[6].GetHashCode() == Grid.pieces[7].GetHashCode() && Grid.pieces[6].GetHashCode() == Grid.pieces[8].GetHashCode() && Grid.pieces[6].CrossOrCircle != CrossOrCircle.Placeholder) ||
                 (Grid.pieces[0].GetHashCode() == Grid.pieces[3].GetHashCode() && Grid.pieces[0].GetHashCode() == Grid.pieces[6].GetHashCode() && Grid.pieces[0].CrossOrCircle != CrossOrCircle.Placeholder) ||
                 (Grid.pieces[1].GetHashCode() == Grid.pieces[4].GetHashCode() && Grid.pieces[1].GetHashCode() == Grid.pieces[7].GetHashCode() && Grid.pieces[1].CrossOrCircle != CrossOrCircle.Placeholder) ||
@@ -82,7 +80,7 @@ namespace JogoDaVelha
                 (Grid.pieces[2].GetHashCode() == Grid.pieces[4].GetHashCode() && Grid.pieces[2].GetHashCode() == Grid.pieces[6].GetHashCode() && Grid.pieces[2].CrossOrCircle != CrossOrCircle.Placeholder)
                 )
             {
-                Console.WriteLine(Screen.CenterText(playerTurn + " WON!"));
+                Console.WriteLine((playerTurn + " WON!"));
                 Console.ReadLine();
                 Ended = true;
             }
@@ -92,12 +90,12 @@ namespace JogoDaVelha
             {
                 Console.Clear();
                 Screen.DrawGrid(Grid);
-                Console.WriteLine(Screen.CenterText("The game ended in a Draw!"));
+                Console.WriteLine(("The game ended in a Draw!"));
                 Console.ReadLine();
                 Ended = true;
 
             }
-            
+
         }
 
     }
