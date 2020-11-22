@@ -7,26 +7,46 @@ namespace JogoDaVelha
 
         public CrossOrCircle CrossOrCircle { get; set; }
         public Grid Grid { get; set; }
+        public bool Cursor;
 
-        public Piece(CrossOrCircle crossOrCircle, Grid grid)
+        public Piece(CrossOrCircle crossOrCircle, Grid grid, bool cursor = false)
         {
 
             CrossOrCircle = crossOrCircle;
             Grid = grid;
+            Cursor = cursor;
         }
         public override string ToString()
         {
-            if (CrossOrCircle == CrossOrCircle.X)
+            if (Cursor)
             {
-                return "X";
-            }
-            else if (CrossOrCircle == CrossOrCircle.O)
-            {
-                return "O";
+                if (CrossOrCircle == CrossOrCircle.X)
+                {
+                    return "[X]";
+                }
+                else if (CrossOrCircle == CrossOrCircle.O)
+                {
+                    return "[O]";
+                }
+                else
+                {
+                    return "[ ]";
+                }
             }
             else
             {
-                return "P";
+                if (CrossOrCircle == CrossOrCircle.X)
+                {
+                    return " X ";
+                }
+                else if (CrossOrCircle == CrossOrCircle.O)
+                {
+                    return " O ";
+                }
+                else
+                {
+                    return "   ";
+                }
             }
         }
         public override int GetHashCode()

@@ -11,6 +11,7 @@ namespace JogoDaVelha
             bool playAgain = true;
             Match match = new Match();
             Screen.printMatch(match);
+            int cursor = 0;
 
             while (playAgain)
             {
@@ -21,10 +22,11 @@ namespace JogoDaVelha
                         Console.Clear();
                         Screen.printMatch(match);
 
-                        Console.Write((("Where do you want to insert your piece[0-8]? ")));
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        match.insertPiece(int.Parse(Console.ReadLine()));
-                        Console.ForegroundColor = ConsoleColor.White;
+                        int cursorSelection = Screen.moveCursor(cursor, match);
+                        
+                        
+                        match.insertPiece(cursorSelection);
+                        
 
                     }
                     catch (CustomException e)
@@ -34,7 +36,7 @@ namespace JogoDaVelha
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.ReadLine();
                     }
-                    catch (ArgumentOutOfRangeException e)
+                    catch (ArgumentOutOfRangeException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine(("The position you choose was not between 0 and 8"));
@@ -50,8 +52,8 @@ namespace JogoDaVelha
                     }
 
                 }
-                Console.ReadLine();
-                Console.Clear();
+                
+                
 
                 try
                 {

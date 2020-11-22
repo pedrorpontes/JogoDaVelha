@@ -13,7 +13,14 @@ namespace JogoDaVelha
             pieces = new List<Piece>();
             for (int i = 0; i < 9; i++)
             {
-                pieces.Add(new Piece(CrossOrCircle.Placeholder, this));
+                if (i == 0)
+                {
+                    pieces.Add(new Piece(CrossOrCircle.Placeholder, this, true));
+                }
+                else
+                {
+                    pieces.Add(new Piece(CrossOrCircle.Placeholder, this));
+                }
             }
 
         }
