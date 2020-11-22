@@ -10,13 +10,17 @@ namespace JogoDaVelha
         public bool Ended { get; set; }
         public Grid Grid { get; set; }
         public CrossOrCircle playerTurn { get; set; }
+        public int WinsFromX { get; set; }
+        public int WinsFromO { get; set; }
 
-        public Match()
+    public Match(int winsFromX = 0, int winsFromO = 0)
         {
             Turn = 1;
             Ended = false;
             Grid = new Grid();
             playerTurn = CrossOrCircle.X;
+            WinsFromO = winsFromO;
+            WinsFromX = winsFromX;
         }
         public void ChangeTurn()
         {
@@ -44,6 +48,7 @@ namespace JogoDaVelha
                     Grid.pieces.Insert(position, p);
                     didGameEnd();
                     ChangeTurn();
+                    
                 }
                 else
                 {
@@ -51,10 +56,12 @@ namespace JogoDaVelha
                     Grid.pieces.Insert(position, p);
                     didGameEnd();
                     ChangeTurn();
+                    
                 }
             }
             else
             {
+                Grid.pieces[position].Cursor = false;
                 throw new CustomException("There is already a piece in this position! \nChoose another.");
             }
         }
@@ -80,7 +87,15 @@ namespace JogoDaVelha
                 (Grid.pieces[2].GetHashCode() == Grid.pieces[4].GetHashCode() && Grid.pieces[2].GetHashCode() == Grid.pieces[6].GetHashCode() && Grid.pieces[2].CrossOrCircle != CrossOrCircle.Placeholder)
                 )
             {
-                Console.WriteLine((playerTurn + " WON!"));
+                Console.WriteLine((playerTurn + " won the match!"));
+                if(playerTurn == CrossOrCircle.X)
+                {
+                    WinsFromX += 1;
+                }
+                else
+                {
+                    WinsFromO += 1;
+                }
                 Console.ReadLine();
                 Ended = true;
             }

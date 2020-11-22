@@ -9,37 +9,54 @@ namespace JogoDaVelha
             Console.ForegroundColor = ConsoleColor.Blue;
 
             Console.WriteLine("   |   |   ");
-
+            if (grid.pieces[0].CrossOrCircle == Enum.CrossOrCircle.X) { Console.ForegroundColor = ConsoleColor.Red; }
+            else if (grid.pieces[0].CrossOrCircle == Enum.CrossOrCircle.O) { Console.ForegroundColor = ConsoleColor.Green; }
             Console.Write(grid.pieces[0].ToString());
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write($"|");
+            if (grid.pieces[1].CrossOrCircle == Enum.CrossOrCircle.X) { Console.ForegroundColor = ConsoleColor.Red; }
+            else if (grid.pieces[1].CrossOrCircle == Enum.CrossOrCircle.O) { Console.ForegroundColor = ConsoleColor.Green; }
             Console.Write(grid.pieces[1].ToString());
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write($"|");
+            if (grid.pieces[2].CrossOrCircle == Enum.CrossOrCircle.X) { Console.ForegroundColor = ConsoleColor.Red; }
+            else if (grid.pieces[2].CrossOrCircle == Enum.CrossOrCircle.O) { Console.ForegroundColor = ConsoleColor.Green; }
             Console.WriteLine(grid.pieces[2].ToString());
             Console.ForegroundColor = ConsoleColor.Blue;
 
             Console.WriteLine("___|___|___");
             Console.WriteLine("   |   |   ");
 
+            if (grid.pieces[3].CrossOrCircle == Enum.CrossOrCircle.X) { Console.ForegroundColor = ConsoleColor.Red; }
+            else if (grid.pieces[3].CrossOrCircle == Enum.CrossOrCircle.O) { Console.ForegroundColor = ConsoleColor.Green; }
             Console.Write(grid.pieces[3].ToString());
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write($"|");
+            if (grid.pieces[4].CrossOrCircle == Enum.CrossOrCircle.X) { Console.ForegroundColor = ConsoleColor.Red; }
+            else if (grid.pieces[4].CrossOrCircle == Enum.CrossOrCircle.O) { Console.ForegroundColor = ConsoleColor.Green; }
             Console.Write(grid.pieces[4].ToString());
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write($"|");
+            if (grid.pieces[5].CrossOrCircle == Enum.CrossOrCircle.X) { Console.ForegroundColor = ConsoleColor.Red; }
+            else if (grid.pieces[5].CrossOrCircle == Enum.CrossOrCircle.O) { Console.ForegroundColor = ConsoleColor.Green; }
             Console.WriteLine(grid.pieces[5].ToString());
             Console.ForegroundColor = ConsoleColor.Blue;
 
             Console.WriteLine("___|___|___");
             Console.WriteLine("   |   |   ");
 
+            if (grid.pieces[6].CrossOrCircle == Enum.CrossOrCircle.X) { Console.ForegroundColor = ConsoleColor.Red; }
+            else if (grid.pieces[6].CrossOrCircle == Enum.CrossOrCircle.O) { Console.ForegroundColor = ConsoleColor.Green; }
             Console.Write(grid.pieces[6].ToString());
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write($"|");
+            if (grid.pieces[7].CrossOrCircle == Enum.CrossOrCircle.X) { Console.ForegroundColor = ConsoleColor.Red; }
+            else if (grid.pieces[7].CrossOrCircle == Enum.CrossOrCircle.O) { Console.ForegroundColor = ConsoleColor.Green; }
             Console.Write(grid.pieces[7].ToString());
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write($"|");
+            if (grid.pieces[8].CrossOrCircle == Enum.CrossOrCircle.X) { Console.ForegroundColor = ConsoleColor.Red; }
+            else if (grid.pieces[8].CrossOrCircle == Enum.CrossOrCircle.O) { Console.ForegroundColor = ConsoleColor.Green; }
             Console.WriteLine(grid.pieces[8].ToString());
             Console.ForegroundColor = ConsoleColor.Blue;
 
@@ -53,6 +70,11 @@ namespace JogoDaVelha
             DrawGrid(match.Grid);
             Console.WriteLine("Turn: " + match.Turn);
             Console.WriteLine("Waiting for: " + match.playerTurn);
+            Console.WriteLine();
+            Console.WriteLine("SCOREBOARD ");
+            Console.Write("Wins from X: " + match.WinsFromX);
+            Console.WriteLine();
+            Console.Write("Wins from O: " + match.WinsFromO);
             Console.WriteLine();
         }
 

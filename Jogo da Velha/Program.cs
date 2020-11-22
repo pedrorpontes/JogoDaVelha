@@ -8,6 +8,7 @@ namespace JogoDaVelha
     {
         static void Main(string[] args)
         {
+            
             bool playAgain = true;
             Match match = new Match();
             Screen.printMatch(match);
@@ -35,14 +36,7 @@ namespace JogoDaVelha
                         Console.WriteLine(((e.Message)));
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.ReadLine();
-                    }
-                    catch (ArgumentOutOfRangeException)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine(("The position you choose was not between 0 and 8"));
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.ReadLine();
-                    }
+                    }                    
                     catch (Exception e)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
@@ -53,16 +47,15 @@ namespace JogoDaVelha
 
                 }
                 
-                
-
                 try
                 {
                     Console.WriteLine((("DO YOU WANT TO PLAY AGAIN[Y/N]?")));
                     string again = Console.ReadLine().Substring(0, 1).ToUpper();
                     if (again == "Y")
                     {
-
-                        match = new Match();
+                        int winFromX = match.WinsFromX;
+                        int winFromO = match.WinsFromO;
+                        match = new Match(winFromX, winFromO);
                     }
                     else
                     {

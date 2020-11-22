@@ -25,28 +25,7 @@ namespace JogoDaVelha
 
         }
 
-        public string piece(int position)
-        {
-            if (pieces[position].CrossOrCircle == CrossOrCircle.Placeholder)
-            {
-                return (position).ToString();
-            }
-            else
-            {
-                if(pieces[position].CrossOrCircle == CrossOrCircle.X){
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    return pieces[position].ToString();
-                }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    string piece = pieces[position].ToString();
-                    
-                    return pieces[position].ToString();
-                }
-            }
 
-        }
         public void showPieces()
         {
             Console.Write("[");
