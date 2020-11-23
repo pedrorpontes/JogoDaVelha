@@ -44,20 +44,9 @@ namespace JogoDaVelha
 
                 try
                 {
-                    Console.Write("{0," + ((Console.WindowWidth / 2 + "DO YOU WANT TO PLAY AGAIN[Y/N]? ".Length / 2)) + "}", "DO YOU WANT TO PLAY AGAIN[Y/N]? ");
-
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    string stringToCheckReplay = Console.ReadLine();
-                    string again;
-                    if (stringToCheckReplay == null)
-                    {
-                        again = " ";
-                    }
-                    else
-                    {
-                        again = stringToCheckReplay.Substring(0, 1).ToUpper();
-                    }
-                    if (again == "Y")
+                    Console.WriteLine("{0," + ((Console.WindowWidth / 2 + "DO YOU WANT TO PLAY AGAIN? ".Length / 2)) + "}", "DO YOU WANT TO PLAY AGAIN? ");
+                    int cursorPlayAgain = Screen.CursorPlayAgain(0, match);
+                    if (cursorPlayAgain == 0)
                     {
                         int winFromX = match.WinsFromX;
                         int winFromO = match.WinsFromO;
@@ -67,7 +56,8 @@ namespace JogoDaVelha
                     {
                         playAgain = false;
                     }
-                    Console.ForegroundColor = ConsoleColor.White;
+
+                      
                 }
                 catch(ArgumentException e)
                 {

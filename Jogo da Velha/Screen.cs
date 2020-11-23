@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace JogoDaVelha
 {
@@ -7,14 +8,14 @@ namespace JogoDaVelha
         public static void DrawGrid(Grid grid)
         {
             string line1 = "   |   |   ";
-            
+
             Console.ForegroundColor = ConsoleColor.Blue;
 
-            Console.WriteLine("{0," + (Console.WindowWidth/2 + line1.Length/2) + "}" , "   |   |   ");
+            Console.WriteLine("{0," + (Console.WindowWidth / 2 + line1.Length / 2) + "}", "   |   |   ");
             if (grid.pieces[0].CrossOrCircle == Enum.CrossOrCircle.X) { Console.ForegroundColor = ConsoleColor.Red; }
             else if (grid.pieces[0].CrossOrCircle == Enum.CrossOrCircle.O) { Console.ForegroundColor = ConsoleColor.Green; }
             //Utilizei "-8" pois a função está centralizando apenas o primeiro objeto  que são apenas 3 caracteres em vez de centralizar a linha completa que possui 11 caracteres. (11 - 3 = 8).
-            Console.Write("{0," + ((Console.WindowWidth / 2)+ line1.Length/2 - 8) + "}", grid.pieces[0].ToString());
+            Console.Write("{0," + ((Console.WindowWidth / 2) + line1.Length / 2 - 8) + "}", grid.pieces[0].ToString());
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write($"|");
             if (grid.pieces[1].CrossOrCircle == Enum.CrossOrCircle.X) { Console.ForegroundColor = ConsoleColor.Red; }
@@ -27,8 +28,8 @@ namespace JogoDaVelha
             Console.WriteLine(grid.pieces[2].ToString());
             Console.ForegroundColor = ConsoleColor.Blue;
 
-            Console.WriteLine("{0," + (Console.WindowWidth / 2 + line1.Length/2) + "}", "___|___|___");
-            Console.WriteLine("{0," + (Console.WindowWidth / 2 + line1.Length/2) + "}", "   |   |   ");
+            Console.WriteLine("{0," + (Console.WindowWidth / 2 + line1.Length / 2) + "}", "___|___|___");
+            Console.WriteLine("{0," + (Console.WindowWidth / 2 + line1.Length / 2) + "}", "   |   |   ");
 
             if (grid.pieces[3].CrossOrCircle == Enum.CrossOrCircle.X) { Console.ForegroundColor = ConsoleColor.Red; }
             else if (grid.pieces[3].CrossOrCircle == Enum.CrossOrCircle.O) { Console.ForegroundColor = ConsoleColor.Green; }
@@ -75,11 +76,11 @@ namespace JogoDaVelha
             string line3 = "SCOREBOARD";
             string line4 = "Wins from X: " + match.WinsFromX;
             string line5 = "Wins from X: " + match.WinsFromO;
-            
+
 
 
             DrawGrid(match.Grid);
-            Console.WriteLine("{0," + (Console.WindowWidth / 2 + line1.Length/2) + "}", line1);
+            Console.WriteLine("{0," + (Console.WindowWidth / 2 + line1.Length / 2) + "}", line1);
             Console.WriteLine("{0," + (Console.WindowWidth / 2 + line2.Length / 2) + "}", line2);
             Console.WriteLine();
             Console.WriteLine("{0," + (Console.WindowWidth / 2 + line3.Length / 2) + "}", line3);
@@ -93,11 +94,11 @@ namespace JogoDaVelha
         {
 
             Console.WriteLine("{0," + ((Console.WindowWidth / 2 + "Use the Arrow Keys to move around the Grid.".Length / 2)) + "}", "Use the Arrow Keys to move around the Grid.");
-            ConsoleKeyInfo cursorKey = Console.ReadKey(); 
-            
+            ConsoleKeyInfo cursorKey = Console.ReadKey();
+
             while (cursorKey.Key != ConsoleKey.Enter)
             {
-               
+
 
                 if (cursorKey.Key == ConsoleKey.DownArrow)
                 {
@@ -144,23 +145,60 @@ namespace JogoDaVelha
                     match.Ended = true;
                     Console.WriteLine();
                     break;
-                    
+
                 }
                 Console.Clear();
-               
+
                 printMatch(match);
-                Console.WriteLine("{0," + ((Console.WindowWidth/2 + "Use the Arrow Keys to move around the Grid.".Length/ 2)) + "}", "Use the Arrow Keys to move around the Grid.");
+                Console.WriteLine("{0," + ((Console.WindowWidth / 2 + "Use the Arrow Keys to move around the Grid.".Length / 2)) + "}", "Use the Arrow Keys to move around the Grid.");
                 cursorKey = Console.ReadKey();
-                
+
             }
             return cursor;
         }
-        /*public static string CenterText(string text)
+
+        public static int CursorPlayAgain(int cursorIndex, Match match)
         {
-            string textToCenter = text;
-            return String.Format("{0," + ((Console.WindowWidth / 2) + (textToCenter.Length / 2)) + "}", textToCenter);
+            
+            List<string> cursorText = new List<string>() { "[YES]", "[NO]", " YES ", " NO " };
+            Console.WriteLine("{0," + ((Console.WindowWidth / 2 + (cursorText[0] + " " + cursorText[3]).Length / 2)) + "}", (cursorText[0] + " " + cursorText[3]));
+            ConsoleKeyInfo cursorPlayAgainKey = Console.ReadKey();
+            
+            while (cursorPlayAgainKey.Key != ConsoleKey.Enter)
+            {
 
-        }*/
+                if (cursorPlayAgainKey.Key == ConsoleKey.LeftArrow)
+                {
+                    Console.Clear();
+                    printMatch(match);
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine("{0," + ((Console.WindowWidth / 2 + "DO YOU WANT TO PLAY AGAIN? ".Length / 2)) + "}", "DO YOU WANT TO PLAY AGAIN? ");
+                    Console.WriteLine("{0," + ((Console.WindowWidth / 2 + (cursorText[0] + " " + cursorText[3]).Length / 2)) + "}", (cursorText[0] + " " + cursorText[3]));
+                    cursorIndex = 0;
+                    
+                }
+                else if (cursorPlayAgainKey.Key == ConsoleKey.RightArrow)
+                {
+                    Console.Clear();
+                    printMatch(match);
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine("{0," + ((Console.WindowWidth / 2 + "DO YOU WANT TO PLAY AGAIN? ".Length / 2)) + "}", "DO YOU WANT TO PLAY AGAIN? ");
+                    Console.WriteLine("{0," + ((Console.WindowWidth / 2 + (cursorText[2] + " " + cursorText[1]).Length / 2)) + "}", (cursorText[2] + " " + cursorText[1]));
+                    cursorIndex = 1;
+                    
+                }
+                cursorPlayAgainKey = Console.ReadKey();
+            }
+            return cursorIndex;
+            /*public static string CenterText(string text)
+            {
+                string textToCenter = text;
+                return String.Format("{0," + ((Console.WindowWidth / 2) + (textToCenter.Length / 2)) + "}", textToCenter);
+
+            }*/
+        }
+
     }
-
 }
