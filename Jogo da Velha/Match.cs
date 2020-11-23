@@ -91,7 +91,10 @@ namespace JogoDaVelha
                 (Grid.pieces[2].GetHashCode() == Grid.pieces[4].GetHashCode() && Grid.pieces[2].GetHashCode() == Grid.pieces[6].GetHashCode() && Grid.pieces[2].CrossOrCircle != CrossOrCircle.Placeholder)
                 )
             {
-                Console.ForegroundColor = ConsoleColor.Cyan;                
+                Console.Clear();
+                Screen.printMatch(this);
+                Console.ForegroundColor = ConsoleColor.Cyan;    
+                
                 Console.WriteLine("{0," + ((Console.WindowWidth / 2 + (playerTurn + " won the match!").Length / 2)) + "}", playerTurn + " won the match!");
                 Console.ForegroundColor = ConsoleColor.White;
                 if(playerTurn == CrossOrCircle.X)
@@ -110,7 +113,7 @@ namespace JogoDaVelha
             else if (Turn == 9)
             {
                 Console.Clear();
-                Screen.DrawGrid(Grid);
+                Screen.printMatch(this);
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("{0," + ((Console.WindowWidth / 2 + "The game ended in a Draw!".Length / 2)) + "}", "The game ended in a Draw!");
                 Console.ForegroundColor = ConsoleColor.White;
