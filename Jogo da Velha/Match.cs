@@ -46,23 +46,27 @@ namespace JogoDaVelha
 
                     Grid.pieces.RemoveAt(position);
                     Grid.pieces.Insert(position, p);
+                    
                     didGameEnd();
                     ChangeTurn();
-                    
+
+
                 }
                 else
                 {
                     Grid.pieces.RemoveAt(position);
                     Grid.pieces.Insert(position, p);
+                    
                     didGameEnd();
                     ChangeTurn();
-                    
+
+
                 }
             }
             else
             {
                 Grid.pieces[position].Cursor = false;
-                throw new CustomException("There is already a piece in this position! \nChoose another.");
+                throw new CustomException("There is already a piece in this position!");
             }
         }
 
@@ -87,7 +91,9 @@ namespace JogoDaVelha
                 (Grid.pieces[2].GetHashCode() == Grid.pieces[4].GetHashCode() && Grid.pieces[2].GetHashCode() == Grid.pieces[6].GetHashCode() && Grid.pieces[2].CrossOrCircle != CrossOrCircle.Placeholder)
                 )
             {
-                Console.WriteLine((playerTurn + " won the match!"));
+                Console.ForegroundColor = ConsoleColor.Cyan;                
+                Console.WriteLine("{0," + ((Console.WindowWidth / 2 + (playerTurn + " won the match!").Length / 2)) + "}", playerTurn + " won the match!");
+                Console.ForegroundColor = ConsoleColor.White;
                 if(playerTurn == CrossOrCircle.X)
                 {
                     WinsFromX += 1;
@@ -105,7 +111,9 @@ namespace JogoDaVelha
             {
                 Console.Clear();
                 Screen.DrawGrid(Grid);
-                Console.WriteLine(("The game ended in a Draw!"));
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("{0," + ((Console.WindowWidth / 2 + "The game ended in a Draw!".Length / 2)) + "}", "The game ended in a Draw!");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.ReadLine();
                 Ended = true;
 

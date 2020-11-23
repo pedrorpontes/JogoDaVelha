@@ -6,12 +6,15 @@ namespace JogoDaVelha
     {
         public static void DrawGrid(Grid grid)
         {
+            string line1 = "   |   |   ";
+            
             Console.ForegroundColor = ConsoleColor.Blue;
 
-            Console.WriteLine("   |   |   ");
+            Console.WriteLine("{0," + (Console.WindowWidth/2 + line1.Length/2) + "}" , "   |   |   ");
             if (grid.pieces[0].CrossOrCircle == Enum.CrossOrCircle.X) { Console.ForegroundColor = ConsoleColor.Red; }
             else if (grid.pieces[0].CrossOrCircle == Enum.CrossOrCircle.O) { Console.ForegroundColor = ConsoleColor.Green; }
-            Console.Write(grid.pieces[0].ToString());
+            //Utilizei "-8" pois a função está centralizando apenas o primeiro objeto  que são apenas 3 caracteres em vez de centralizar a linha completa que possui 11 caracteres. (11 - 3 = 8).
+            Console.Write("{0," + ((Console.WindowWidth / 2)+ line1.Length/2 - 8) + "}", grid.pieces[0].ToString());
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write($"|");
             if (grid.pieces[1].CrossOrCircle == Enum.CrossOrCircle.X) { Console.ForegroundColor = ConsoleColor.Red; }
@@ -24,12 +27,12 @@ namespace JogoDaVelha
             Console.WriteLine(grid.pieces[2].ToString());
             Console.ForegroundColor = ConsoleColor.Blue;
 
-            Console.WriteLine("___|___|___");
-            Console.WriteLine("   |   |   ");
+            Console.WriteLine("{0," + (Console.WindowWidth / 2 + line1.Length/2) + "}", "___|___|___");
+            Console.WriteLine("{0," + (Console.WindowWidth / 2 + line1.Length/2) + "}", "   |   |   ");
 
             if (grid.pieces[3].CrossOrCircle == Enum.CrossOrCircle.X) { Console.ForegroundColor = ConsoleColor.Red; }
             else if (grid.pieces[3].CrossOrCircle == Enum.CrossOrCircle.O) { Console.ForegroundColor = ConsoleColor.Green; }
-            Console.Write(grid.pieces[3].ToString());
+            Console.Write("{0," + ((Console.WindowWidth / 2) + line1.Length / 2 - 8) + "}", grid.pieces[3].ToString());
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write($"|");
             if (grid.pieces[4].CrossOrCircle == Enum.CrossOrCircle.X) { Console.ForegroundColor = ConsoleColor.Red; }
@@ -42,12 +45,12 @@ namespace JogoDaVelha
             Console.WriteLine(grid.pieces[5].ToString());
             Console.ForegroundColor = ConsoleColor.Blue;
 
-            Console.WriteLine("___|___|___");
-            Console.WriteLine("   |   |   ");
+            Console.WriteLine("{0," + (Console.WindowWidth / 2 + line1.Length / 2) + "}", "___|___|___");
+            Console.WriteLine("{0," + (Console.WindowWidth / 2 + line1.Length / 2) + "}", "   |   |   ");
 
             if (grid.pieces[6].CrossOrCircle == Enum.CrossOrCircle.X) { Console.ForegroundColor = ConsoleColor.Red; }
             else if (grid.pieces[6].CrossOrCircle == Enum.CrossOrCircle.O) { Console.ForegroundColor = ConsoleColor.Green; }
-            Console.Write(grid.pieces[6].ToString());
+            Console.Write("{0," + ((Console.WindowWidth / 2) + line1.Length / 2 - 8) + "}", grid.pieces[6].ToString());
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write($"|");
             if (grid.pieces[7].CrossOrCircle == Enum.CrossOrCircle.X) { Console.ForegroundColor = ConsoleColor.Red; }
@@ -60,33 +63,42 @@ namespace JogoDaVelha
             Console.WriteLine(grid.pieces[8].ToString());
             Console.ForegroundColor = ConsoleColor.Blue;
 
-            Console.WriteLine("   |   |   ");
+            Console.WriteLine("{0," + (Console.WindowWidth / 2 + line1.Length / 2) + "}", "   |   |   ");
             Console.ForegroundColor = ConsoleColor.White;
 
 
         }
         public static void printMatch(Match match)
         {
+            string line1 = "Turn: " + match.Turn;
+            string line2 = "Waiting for: " + match.playerTurn;
+            string line3 = "SCOREBOARD";
+            string line4 = "Wins from X: " + match.WinsFromX;
+            string line5 = "Wins from X: " + match.WinsFromO;
+            
+
+
             DrawGrid(match.Grid);
-            Console.WriteLine("Turn: " + match.Turn);
-            Console.WriteLine("Waiting for: " + match.playerTurn);
+            Console.WriteLine("{0," + (Console.WindowWidth / 2 + line1.Length/2) + "}", line1);
+            Console.WriteLine("{0," + (Console.WindowWidth / 2 + line2.Length / 2) + "}", line2);
             Console.WriteLine();
-            Console.WriteLine("SCOREBOARD ");
-            Console.Write("Wins from X: " + match.WinsFromX);
+            Console.WriteLine("{0," + (Console.WindowWidth / 2 + line3.Length / 2) + "}", line3);
+            Console.Write("{0," + (Console.WindowWidth / 2 + line4.Length / 2) + "}", line4);
             Console.WriteLine();
-            Console.Write("Wins from O: " + match.WinsFromO);
+            Console.Write("{0," + (Console.WindowWidth / 2 + line5.Length / 2) + "}", line5);
             Console.WriteLine();
         }
 
         public static int moveCursor(int cursor, Match match)
         {
 
-            Console.WriteLine("Use the Arrow Keys to move around the Grid.");
+            Console.WriteLine("{0," + ((Console.WindowWidth / 2 + "Use the Arrow Keys to move around the Grid.".Length / 2)) + "}", "Use the Arrow Keys to move around the Grid.");
             ConsoleKeyInfo cursorKey = Console.ReadKey(); 
             
             while (cursorKey.Key != ConsoleKey.Enter)
             {
-                
+               
+
                 if (cursorKey.Key == ConsoleKey.DownArrow)
                 {
                     match.Grid.pieces[cursor].Cursor = false;
@@ -127,10 +139,17 @@ namespace JogoDaVelha
                     }
                     match.Grid.pieces[cursor].Cursor = true;
                 }
+                else if (cursorKey.Key == ConsoleKey.Escape)
+                {
+                    match.Ended = true;
+                    Console.WriteLine();
+                    break;
+                    
+                }
                 Console.Clear();
                
                 printMatch(match);
-                Console.WriteLine("Use the Arrow Keys to move around the Grid.");
+                Console.WriteLine("{0," + ((Console.WindowWidth/2 + "Use the Arrow Keys to move around the Grid.".Length/ 2)) + "}", "Use the Arrow Keys to move around the Grid.");
                 cursorKey = Console.ReadKey();
                 
             }
